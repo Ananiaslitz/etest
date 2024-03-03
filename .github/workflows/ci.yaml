@@ -29,6 +29,11 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
+      - name: Generate application key
+        run: php artisan key:generate
+        env:
+          APP_KEY: 'base64:TEST'
+
       - name: Run PHPUnit Tests
         run: vendor/bin/phpunit --coverage-text
 
