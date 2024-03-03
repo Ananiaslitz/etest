@@ -29,10 +29,11 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
 
-      - name: Generate application key
-        run: php artisan key:generate
-        env:
-          APP_KEY: 'base64:TEST'
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Set Laravel APP_KEY
+        run: echo "APP_KEY=${{ secrets.APP_KEY }}" >> .env
 
       - name: Run PHPUnit Tests
         run: vendor/bin/phpunit --coverage-text
