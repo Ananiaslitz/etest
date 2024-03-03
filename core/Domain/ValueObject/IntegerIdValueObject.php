@@ -4,18 +4,29 @@ namespace Core\Domain\ValueObject;
 
 class IntegerIdValueObject extends AbstractValueObject
 {
-    private int $value;
+    private ?int $id;
 
-    public function __construct(int $value)
+    public function __construct(?int $id = null)
     {
-        if ($value <= 0) {
-            throw new \InvalidArgumentException("ID deve ser um valor positivo.");
-        }
-
-        $this->value = $value;
+        $this->id = $id;
     }
 
-    public function getValue(): int
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function equals(IntegerIdValueObject|AbstractValueObject $other): bool
+    {
+        return $this->id === $other->getId();
+    }
+
+    public function isInitialized(): bool
+    {
+        return $this->id !== null;
+    }
+
+    public function getValue(): ?int
     {
         return $this->value;
     }

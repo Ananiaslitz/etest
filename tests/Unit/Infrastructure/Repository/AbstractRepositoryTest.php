@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Infrastructure\Repository;
 
+use Core\Domain\Entity\AbstractEntity;
 use Core\Infrastructure\Repository\AbstractRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,11 @@ class AbstractRepositoryTest extends TestCase
             public function __construct(Model $model)
             {
                 parent::__construct($model);
+            }
+
+            function save(AbstractEntity $entity): int
+            {
+                return 1;
             }
         };
     }

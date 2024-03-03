@@ -2,6 +2,7 @@
 
 namespace Core\Infrastructure\Repository;
 
+use Core\Domain\Entity\AbstractEntity;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -31,6 +32,12 @@ abstract class AbstractRepository
     {
         return $this->model->all();
     }
+
+    /**
+     * @param AbstractEntity $entity
+     * @return bool
+     */
+    abstract function save(AbstractEntity $entity): int;
 
     /**
      * Create a new record in the database.

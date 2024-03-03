@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [\Core\Infrastructure\Http\Controllers\DocumentationController::class, 'html']);
+Route::get('/docs', [\Core\Infrastructure\Http\Controllers\DocumentationController::class, 'html']);
+Route::get('/docs.json', [\Core\Infrastructure\Http\Controllers\DocumentationController::class, 'index']);

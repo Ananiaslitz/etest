@@ -13,6 +13,11 @@ abstract class AbstractEntity
         $this->id = $id;
     }
 
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function getId(): IntegerIdValueObject
     {
         return $this->id;

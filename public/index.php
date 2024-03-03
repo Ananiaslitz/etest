@@ -4,6 +4,7 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
+!defined('BASE_PATH') && define('BASE_PATH', dirname(__DIR__, 1));
 
 /*
 |--------------------------------------------------------------------------
