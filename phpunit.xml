@@ -14,7 +14,7 @@
     </testsuites>
     <source>
         <include>
-            <directory>core/</directory>
+            <directory>./core/</directory>
         </include>
     </source>
     <php>
