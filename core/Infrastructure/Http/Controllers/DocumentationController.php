@@ -8,7 +8,7 @@ use OpenApi\Generator;
 /**
  * @OA\Get(
  *     path="/projects",
- *     @OA\Response(response="200", description="Display a listing of projects.")
+ * @OA\Response(response="200", description="Display a listing of projects.")
  * )
  */
 class DocumentationController extends BaseController

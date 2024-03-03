@@ -34,7 +34,7 @@ abstract class AbstractRepository
     }
 
     /**
-     * @param AbstractEntity $entity
+     * @param  AbstractEntity $entity
      * @return bool
      */
     abstract public function save(AbstractEntity $entity): int;
@@ -42,7 +42,7 @@ abstract class AbstractRepository
     /**
      * Create a new record in the database.
      *
-     * @param array $data
+     * @param  array $data
      * @return Model
      */
     public function create(array $data): Model
@@ -53,8 +53,8 @@ abstract class AbstractRepository
     /**
      * Update record in the database.
      *
-     * @param array $data
-     * @param int $id
+     * @param  array $data
+     * @param  int   $id
      * @return Model
      */
     public function update(array $data, int $id): Model
@@ -67,7 +67,7 @@ abstract class AbstractRepository
     /**
      * Delete record from the database.
      *
-     * @param int $id
+     * @param  int $id
      * @return bool
      */
     public function delete(int $id): bool
@@ -78,7 +78,7 @@ abstract class AbstractRepository
     /**
      * Show the record with the given id.
      *
-     * @param int $id
+     * @param  int $id
      * @return Model
      */
     public function find(int $id): Model

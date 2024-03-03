@@ -10,7 +10,8 @@ class ProductEntity extends AbstractEntity
     protected $price;
     protected $description;
 
-    public function __construct(IntegerIdValueObject $id, string $name, float $price, string $description) {
+    public function __construct(IntegerIdValueObject $id, string $name, float $price, string $description)
+    {
         parent::__construct($id);
         $this->name = $name;
         $this->price = $price;

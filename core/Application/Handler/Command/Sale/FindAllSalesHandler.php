@@ -15,8 +15,10 @@ class FindAllSalesHandler
     {
         $sales = $this->sale->with('products')->get();
 
-        return $sales->map(function ($sale) {
-            return $sale->toArray();
-        });
+        return $sales->map(
+            function ($sale) {
+                return $sale->toArray();
+            }
+        );
     }
 }
