@@ -38,8 +38,11 @@ jobs:
       - name: Run PHPUnit Tests
         run: vendor/bin/phpunit --coverage-text
 
+      - name: Install phpcs
+        run: composer require squizlabs/php_codesniffer
+
       - name: Check coding standards
-        run: ./vendor/bin/phpcs --standard=PSR12 src/
+        run: ./vendor/bin/phpcs --standard=PSR12 core/
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
