@@ -1,7 +1,10 @@
 FROM php:8.2.0-fpm-alpine3.16
 
 
-RUN apk add --no-cache openssl bash mysql-client shadow libzip-dev nodejs npm sqlite-dev
+RUN apk add --no-cache openssl bash mysql-client shadow libzip-dev nodejs npm sqlite-dev \
+    freetype less libjpeg-turbo libpng freetype-dev libjpeg-turbo-dev libpng-dev \
+    autoconf g++ make
+
 RUN docker-php-ext-install pdo pdo_mysql pdo_sqlite zip pcntl posix
 
 RUN apk add --no-cache \
@@ -22,6 +25,10 @@ RUN apk add --no-cache \
       libjpeg-turbo-dev \
       libpng-dev \
     && rm -rf /tmp/*
+
+RUN pecl install pcov \
+    && echo "extension=pcov.so" > /usr/local/etc/php/conf.d/pcov.ini
+
 
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \

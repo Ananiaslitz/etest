@@ -12,9 +12,17 @@
             <directory>tests/Feature</directory>
         </testsuite>
     </testsuites>
+    <coverage includeUncoveredFiles="true"
+              pathCoverage="false"
+              ignoreDeprecatedCodeUnits="true"
+              disableCodeCoverageIgnore="true">
+        <report>
+            <clover outputFile="clover.xml"/>
+        </report>
+    </coverage>
     <source>
         <include>
-            <directory>./core/</directory>
+            <directory>./core</directory>
         </include>
     </source>
     <php>
