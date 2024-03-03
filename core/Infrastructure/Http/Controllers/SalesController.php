@@ -15,7 +15,6 @@ use Core\Infrastructure\Http\Request\AddProductToSaleRequest;
 use Core\Infrastructure\Http\Request\CreateSaleRequest;
 use Illuminate\Http\Response;
 
-
 class SalesController extends Controller
 {
     private $commandBus;
@@ -97,11 +96,11 @@ class SalesController extends Controller
 
         $command = new AddProductToSaleCommand($saleId, $productId, $quantity);
 
-//        try {
+        try {
             $this->commandBus->dispatch($command);
             return response()->json(['message' => 'Product added to sale successfully.']);
-//        } catch (\Exception $e) {
-//            return response()->json(['error' => $e->getMessage()], 422);
-//        }
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 422);
+        }
     }
 }

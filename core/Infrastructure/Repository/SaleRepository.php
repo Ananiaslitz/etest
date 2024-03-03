@@ -107,5 +107,4 @@ class SaleRepository extends AbstractRepository implements SaleRepositoryInterfa
 
         return $saleEntity;
     }
-
 }

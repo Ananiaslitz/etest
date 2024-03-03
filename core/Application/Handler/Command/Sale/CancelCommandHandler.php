@@ -24,5 +24,4 @@ class CancelCommandHandler
 
         $this->saleRepository->save($sale);
     }
-
 }

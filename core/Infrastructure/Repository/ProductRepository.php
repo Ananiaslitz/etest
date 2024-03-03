@@ -42,5 +42,4 @@ class ProductRepository extends AbstractRepository implements ProductRepositoryI
             $product->description
         );
     }
-
 }

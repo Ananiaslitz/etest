@@ -10,9 +10,10 @@ use Core\Domain\Repository\ProductRepositoryInterface;
 class AddProductToSaleCommandHandler
 {
     public function __construct(
-        private SaleRepositoryInterface $saleRepository,
+        private SaleRepositoryInterface    $saleRepository,
         private ProductRepositoryInterface $productRepository
-    ){
+    )
+    {
     }
 
     public function handle(AddProductToSaleCommand $command): void

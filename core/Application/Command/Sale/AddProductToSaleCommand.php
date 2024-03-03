@@ -31,5 +31,4 @@ class AddProductToSaleCommand
     {
         return $this->quantity;
     }
-
 }

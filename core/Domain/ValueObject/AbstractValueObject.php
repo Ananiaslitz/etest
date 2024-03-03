@@ -13,5 +13,5 @@ abstract class AbstractValueObject
         return $this->getAttributes() === $other->getAttributes();
     }
 
-    protected abstract function getAttributes(): array;
+    abstract protected function getAttributes(): array;
 }

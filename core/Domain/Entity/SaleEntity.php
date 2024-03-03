@@ -77,11 +77,25 @@ class SaleEntity extends AbstractEntity implements ToArray
         $this->status = SaleStatusEnum::COMPLETED;
     }
 
-    public function getDate() { return $this->date; }
-    public function getTotalAmount() { return $this->totalAmount; }
-    public function getLineItems() { return $this->lineItems; }
+    public function getDate()
+    {
+        return $this->date;
+    }
 
-    public function getStatus() { return $this->status; }
+    public function getTotalAmount()
+    {
+        return $this->totalAmount;
+    }
+
+    public function getLineItems()
+    {
+        return $this->lineItems;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
     public function toArray(): array
     {

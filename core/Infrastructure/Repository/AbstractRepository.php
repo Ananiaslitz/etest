@@ -37,7 +37,7 @@ abstract class AbstractRepository
      * @param AbstractEntity $entity
      * @return bool
      */
-    abstract function save(AbstractEntity $entity): int;
+    abstract public function save(AbstractEntity $entity): int;
 
     /**
      * Create a new record in the database.

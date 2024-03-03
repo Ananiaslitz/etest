@@ -8,7 +8,6 @@ use Core\Application\Query\GetAllProductsQuery;
 use Core\Infrastructure\Http\Request\CreateProductRequest;
 use Illuminate\Http\Request;
 
-
 class ProductsController extends BaseController
 {
     public function __construct(private CommandQueryBusInterface $bus)
@@ -35,5 +34,4 @@ class ProductsController extends BaseController
         return response()->json(['id' => $productId], 201)
             ->header('Location', url("/products/{$productId}"));
     }
-
 }

@@ -28,5 +28,4 @@ class CompletecommandHandler
 
         $this->saleRepository->save($sale);
     }
-
 }

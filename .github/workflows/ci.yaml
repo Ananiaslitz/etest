@@ -41,6 +41,9 @@ jobs:
       - name: Install phpcs
         run: composer require squizlabs/php_codesniffer
 
+      - name: Running PHPCBF
+        run: ./vendor/bin/phpcbf --standard=PSR12 core/
+
       - name: Check coding standards
         run: ./vendor/bin/phpcs --standard=PSR12 core/
 
