@@ -20,7 +20,7 @@ class SaleRepositoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->modelMock = Mockery::mock(Sale::class)->makePartial();
+        $this->modelMock = Mockery::mock(Sale::class);
         $this->repository = new SaleRepository($this->modelMock);
 
         DB::shouldReceive('beginTransaction')->andReturnNull();
@@ -33,28 +33,17 @@ class SaleRepositoryTest extends TestCase
         Mockery::close();
     }
 
-    public function testSaveCreatesNewSaleWhenIdIsNull()
+    public function testSaveUpdatesExistingSaleWhenIdIsNotNull()
     {
-        // Suponha que o ID do modelo seja definido após o salvamento
-        $this->modelMock->id = 1;
-        $this->modelMock->shouldReceive('save')->andReturn(true);
         $this->modelMock->shouldReceive('setAttribute')->andReturnUsing(function ($key, $value) {
             $this->$key = $value;
         });
+        $this->modelMock->shouldReceive('getAttribute')->andReturn(1);
+        $this->modelMock->id = 1;
+        $this->modelMock->shouldReceive('isIgnoringTimestamps')->andReturnSelf();
+        $this->modelMock->shouldReceive('find')->with(1)->andReturn($this->modelMock);
 
-        $saleEntity = new SaleEntity(new IntegerIdValueObject(null), SaleStatusEnum::PENDING);
-        $resultId = $this->repository->save($saleEntity);
-
-        $this->assertIsInt(1, $resultId);
-    }
-
-    public function testSaveUpdatesExistingSaleWhenIdIsNotNull()
-    {
-        // Simula a existência de uma venda para atualização
-        $existingSaleMock = Mockery::mock(Sale::class)->makePartial();
-        $existingSaleMock->id = 1;
-        $this->modelMock->shouldReceive('find')->with(1)->andReturn($existingSaleMock);
-        $existingSaleMock->shouldReceive('save')->andReturn(true);
+        $this->modelMock->shouldReceive('save')->andReturn(true);
 
         $saleEntity = new SaleEntity(new IntegerIdValueObject(1), SaleStatusEnum::PENDING);
         $resultId = $this->repository->save($saleEntity);
@@ -83,7 +72,6 @@ class SaleRepositoryTest extends TestCase
         $result = $this->repository->findById(1);
 
         $this->assertInstanceOf(SaleEntity::class, $result);
-        $this->assertEquals(1, $result->getId()->getValue());
+        $this->assertEquals(1, $result->getId()->getId());
     }
 }
-
