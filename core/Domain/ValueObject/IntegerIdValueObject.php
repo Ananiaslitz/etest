@@ -28,16 +28,16 @@ class IntegerIdValueObject extends AbstractValueObject
 
     public function getValue(): ?int
     {
-        return $this->value;
+        return $this->id;
     }
 
     public function __toString(): string
     {
-        return (string) $this->value;
+        return (string) $this->id;
     }
 
-    protected function getAttributes(): array
+    public function getAttributes(): array
     {
-        return ['value' => $this->value];
+        return ['value' => $this->id];
     }
 }

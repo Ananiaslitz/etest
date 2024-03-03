@@ -34,4 +34,17 @@ class AbstractEntityTest extends TestCase
             'As entidades com IDs diferentes não devem ser consideradas iguais'
         );
     }
+
+    public function testSetIdUpdatesEntityId()
+    {
+        $newId = new IntegerIdValueObject(3);
+
+        $this->entity1->setId($newId);
+
+        $this->assertTrue(
+            $this->entity1->getId()->equals($newId),
+            'O método setId deve atualizar o ID da entidade'
+        );
+    }
+
 }

@@ -104,7 +104,7 @@ class SaleEntity extends AbstractEntity implements ToArray
         foreach ($this->lineItems as $item) {
             $product = $item['product'];
             $lineItemsArray[] = [
-                'productId' => $product->getId(),
+                'productId' => $product->getId()->getId(),
                 'name' => $product->getName(),
                 'price' => $product->getPrice(),
                 'quantity' => $item['quantity'],

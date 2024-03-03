@@ -18,29 +18,6 @@ class SaleRepository extends AbstractRepository implements SaleRepositoryInterfa
         parent::__construct($model);
     }
 
-    //    public function getProductsBySaleId($saleId): ?SaleEntity
-    //    {
-    //        $saleModel = $this->model->with('products')->find($saleId);
-    //
-    //        if (!$saleModel) {
-    //            return null;
-    //        }
-    //
-    //        $saleEntity = new SaleEntity(/* Parâmetros necessários */);
-    //
-    //        foreach ($saleModel->products as $productModel) {
-    //            dd($productModel);
-    ////            $productEntity = new ProductEntity(
-    ////                $productModel->name,
-    ////                $productModel->price,
-    ////                $productModel->
-    ////            );
-    ////            $saleEntity->addProduct($productEntity);
-    //        }
-    //
-    //        return $saleEntity;
-    //    }
-
     /**
      * @throws \Exception
      */

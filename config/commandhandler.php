@@ -9,10 +9,10 @@ use Core\Application\Handler\Command\Product\CreateProductCommandHandler;
 use Core\Application\Handler\Command\Sale\AddProductToSaleCommandHandler;
 use Core\Application\Handler\Command\Sale\CancelCommandHandler;
 use Core\Application\Handler\Command\Sale\CancelHandler;
-use Core\Application\Handler\Command\Sale\CompletecommandHandler;
+use Core\Application\Handler\Command\Sale\CompleteCommandHandler;
 use Core\Application\Handler\Command\Sale\CreateCommandHandler;
-use Core\Application\Handler\Command\Sale\FindAllSalesHandler;
-use Core\Application\Handler\Command\Sale\FindSaleByIdCommandHandler;
+use Core\Application\Handler\Query\FindAllSalesHandler;
+use Core\Application\Handler\Query\FindSaleByIdCommandHandler;
 use Core\Application\Handler\Query\GetAllProductsQueryHandler;
 use Core\Application\Query\FindAllSalesQuery;
 use Core\Application\Query\FindSaleByIdQuery;
@@ -28,7 +28,7 @@ return [
         FindSaleByIdQuery::class => FindSaleByIdCommandHandler::class,
         FindAllSalesQuery::class => FindAllSalesHandler::class,
         CancelCommand::class => CancelCommandHandler::class,
-        CompleteCommand::class => CompletecommandHandler::class,
+        CompleteCommand::class => CompleteCommandHandler::class,
         AddProductToSaleCommand::class => AddProductToSaleCommandHandler::class
     ),
 ];

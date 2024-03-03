@@ -4,6 +4,9 @@ namespace Core\Infrastructure\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Sale extends Model
 {
     protected $fillable = ['amount'];

@@ -34,7 +34,7 @@ class DateTimeValueObject extends AbstractValueObject
         return $this->value->format('c');
     }
 
-    protected function getAttributes(): array
+    public function getAttributes(): array
     {
         return ['value' => $this->value->format('c')];
     }
