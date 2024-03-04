@@ -1,0 +1,467 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Teste Diego Ananias Adoorei",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8021",
+            "description": "Localhost api Adoorei"
+        }
+    ],
+    "paths": {
+        "/projects": {
+            "get": {
+                "operationId": "d61ac86caad3383e5f90e47960581209",
+                "responses": {
+                    "200": {
+                        "description": "Display a listing of projects."
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get list of products",
+                "description": "Returns list of products",
+                "operationId": "getProductsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Add a new product",
+                "description": "Adds a new product to the system",
+                "operationId": "addProduct",
+                "requestBody": {
+                    "description": "Product object that needs to be added to the store",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Product X"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 10
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "A new product description"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Product added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Product added successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/sales": {
+            "get": {
+                "tags": [
+                    "Sales"
+                ],
+                "summary": "Get list of sales",
+                "description": "Returns a list of sales with details including products sold in each sale",
+                "operationId": "getSalesList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "Sale ID",
+                                                "type": "integer"
+                                            },
+                                            "amount": {
+                                                "description": "Total amount of the sale",
+                                                "type": "string"
+                                            },
+                                            "status": {
+                                                "description": "Status of the sale",
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "description": "Creation date of the sale",
+                                                "type": "string"
+                                            },
+                                            "updated_at": {
+                                                "description": "Last update date of the sale",
+                                                "type": "string"
+                                            },
+                                            "products": {
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "description": "Product ID",
+                                                            "type": "integer"
+                                                        },
+                                                        "name": {
+                                                            "description": "Product name",
+                                                            "type": "string"
+                                                        },
+                                                        "price": {
+                                                            "description": "Product price",
+                                                            "type": "string"
+                                                        },
+                                                        "description": {
+                                                            "description": "Product description",
+                                                            "type": "string"
+                                                        },
+                                                        "pivot": {
+                                                            "properties": {
+                                                                "sale_id": {
+                                                                    "description": "Sale ID associated with the product",
+                                                                    "type": "integer"
+                                                                },
+                                                                "product_id": {
+                                                                    "description": "Product ID",
+                                                                    "type": "integer"
+                                                                },
+                                                                "amount": {
+                                                                    "description": "Quantity of the product sold",
+                                                                    "type": "integer"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sales"
+                ],
+                "summary": "Record a new sale",
+                "description": "Records a new sale with one or more products",
+                "operationId": "createSale",
+                "requestBody": {
+                    "description": "Payload to create a new sale",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "products": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "productId": {
+                                                    "description": "ID of the product",
+                                                    "type": "string",
+                                                    "example": "1"
+                                                },
+                                                "quantity": {
+                                                    "description": "Quantity of the product",
+                                                    "type": "integer",
+                                                    "example": 2
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sale recorded successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sale recorded successfully."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/sales/{id}": {
+            "get": {
+                "tags": [
+                    "Sales"
+                ],
+                "summary": "Get sale details by ID",
+                "description": "Returns details of a specific sale including products sold",
+                "operationId": "getSaleById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of sale to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Sale ID",
+                                            "type": "integer"
+                                        },
+                                        "amount": {
+                                            "description": "Total amount of the sale",
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "description": "Creation date of the sale",
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "description": "Last update date of the sale",
+                                            "type": "string"
+                                        },
+                                        "products": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "Product ID",
+                                                        "type": "integer"
+                                                    },
+                                                    "name": {
+                                                        "description": "Product name",
+                                                        "type": "string"
+                                                    },
+                                                    "price": {
+                                                        "description": "Product price",
+                                                        "type": "string"
+                                                    },
+                                                    "description": {
+                                                        "description": "Product description",
+                                                        "type": "string"
+                                                    },
+                                                    "pivot": {
+                                                        "properties": {
+                                                            "sale_id": {
+                                                                "description": "Sale ID",
+                                                                "type": "integer"
+                                                            },
+                                                            "product_id": {
+                                                                "description": "Product ID",
+                                                                "type": "integer"
+                                                            },
+                                                            "amount": {
+                                                                "description": "Quantity of the product sold in this sale",
+                                                                "type": "integer"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Sale not found"
+                    }
+                }
+            }
+        },
+        "/api/sales/{id}/complete": {
+            "patch": {
+                "tags": [
+                    "Sales"
+                ],
+                "summary": "Mark a sale as complete",
+                "description": "Marks a sale as complete. A sale can only be marked as complete if it is currently in the pending state.",
+                "operationId": "completeSale",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the sale to mark as complete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sale marked as complete successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sale marked as complete successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "A sale can only be marked as complete if it is currently in the pending state."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Sale not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Product": {
+                "title": "Product",
+                "description": "Product model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the product",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Name of the product",
+                        "type": "string",
+                        "example": "A nice product"
+                    },
+                    "price": {
+                        "description": "Name of the product",
+                        "type": "decimal",
+                        "example": "A nice product"
+                    },
+                    "description": {
+                        "description": "Description of the product",
+                        "type": "string",
+                        "example": "A nice product"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Product"
+                }
+            }
+        }
+    }
+}
