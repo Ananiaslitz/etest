@@ -56,9 +56,11 @@ class SalesController extends Controller
      *                         @OA\Property(
      *                             property="pivot",
      *                             type="object",
-     *                             @OA\Property(property="sale_id", type="integer", description="Sale ID associated with the product"),
+     *                             @OA\Property(property="sale_id", type="integer",
+     *     description="Sale ID associated with the product"),
      *                             @OA\Property(property="product_id", type="integer", description="Product ID"),
-     *                             @OA\Property(property="amount", type="integer", description="Quantity of the product sold")
+     *                             @OA\Property(property="amount", type="integer",
+     *     description="Quantity of the product sold")
      *                         )
      *                     )
      *                 )
@@ -93,8 +95,10 @@ class SalesController extends Controller
      *                 type="array",
      *                 @OA\Items(
      *                     type="object",
-     *                     @OA\Property(property="productId", type="string", description="ID of the product", example="1"),
-     *                     @OA\Property(property="quantity", type="integer", description="Quantity of the product", example=2)
+     *                     @OA\Property(property="productId", type="string",
+     *      description="ID of the product", example="1"),
+     *                     @OA\Property(property="quantity", type="integer",
+     *     description="Quantity of the product", example=2)
      *                 )
      *             )
      *         )
@@ -125,7 +129,6 @@ class SalesController extends Controller
             return response()->json('', Response::HTTP_CREATED)
                 ->header('Location', route('sales.show', ['id' => $saleId]));
         } catch (\Exception $e) {
-            dd($e->getMessage());
             return response()->json(['error' => 'Unable to create sale'], Response::HTTP_BAD_REQUEST);
         }
     }
@@ -169,7 +172,8 @@ class SalesController extends Controller
      *                         type="object",
      *                         @OA\Property(property="sale_id", type="integer", description="Sale ID"),
      *                         @OA\Property(property="product_id", type="integer", description="Product ID"),
-     *                         @OA\Property(property="amount", type="integer", description="Quantity of the product sold in this sale")
+     *                         @OA\Property(property="amount", type="integer",
+     *     description="Quantity of the product sold in this sale")
      *                     )
      *                 )
      *             )
@@ -203,7 +207,8 @@ class SalesController extends Controller
      *     operationId="cancelSale",
      *     tags={"Sales"},
      *     summary="Cancel a sale",
-     *     description="Cancels a sale. A sale can only be marked as cancelled if it is currently in the pending state.",
+     *     description="Cancels a sale. A sale can only be
+     * marked as cancelled if it is currently in the pending state.",
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -224,7 +229,8 @@ class SalesController extends Controller
      *         response=422,
      *         description="Unprocessable Entity",
      *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="A sale can only be marked as cancel if it is currently in the pending state.")
+     *             @OA\Property(property="error", type="string",
+     *     example="A sale can only be marked as cancel if it is currently in the pending state.")
      *         )
      *     ),
      *     @OA\Response(
@@ -252,7 +258,8 @@ class SalesController extends Controller
      *     operationId="completeSale",
      *     tags={"Sales"},
      *     summary="Mark a sale as complete",
-     *     description="Marks a sale as complete. A sale can only be marked as complete if it is currently in the pending state.",
+     *     description="Marks a sale as complete. A sale can only be marked
+     * as complete if it is currently in the pending state.",
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -273,7 +280,8 @@ class SalesController extends Controller
      *         response=422,
      *         description="Unprocessable Entity",
      *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="A sale can only be marked as complete if it is currently in the pending state.")
+     *             @OA\Property(property="error", type="string",
+     *      example="A sale can only be marked as complete if it is currently in the pending state.")
      *         )
      *     ),
      *     @OA\Response(
